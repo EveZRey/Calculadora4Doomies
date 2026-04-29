@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="es">  
+
+<head> 
+    <!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Calculadora de Matrices</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+
+  <meta charset="UTF-8" />
+    <title>Calculadora de Matrices</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <header class="header">
+      <h1 class="titulo">Calculadora de Matrices</h1>
+    </header>
+
+    <main class="contenedor">
+      <main class="contenedor">
+        <section id="vista-menu" class="vista-activa">
+          <p class="texto">> ¿Qué operación deseas realizar hoy?</p>
+
+          <div class="grid-menu">
+            <div class="tarjeta-opcion" onclick="navegar('sel')">
+              <div class="icono">Σ</div>
+              <h3>Sistemas (SEL)</h3>
+              <p>Resuelve sistemas por Gauss-Jordan paso a paso.</p>
+            </div>
+            <div class="tarjeta-opcion" onclick="navegar('det')">
+              <div class="icono">|A|</div>
+              <h3>Determinante</h3>
+              <p>Cálculo exacto para matrices cuadradas.</p>
+            </div>
+            <div class="tarjeta-opcion" onclick="navegar('inv')">
+              <div class="icono">A⁻¹</div>
+              <h3>Inversa</h3>
+              <p>Obtén la matriz inversa mediante adjunta o Gauss.</p>
+            </div>
+          </div>
+
+          <div style="display: none">
+            <input type="radio" name="operacion" value="sel" checked />
+            <input type="radio" name="operacion" value="det" />
+            <input type="radio" name="operacion" value="inv" />
+          </div>
+        </section>
+
+        <section id="vista-calculadora" class="vista-oculta">
+          <button class="btn-volver" onclick="volverAlMenu()">&#8592; Volver al Menú</button>
+          </button>
+          <h2 id="titulo-operacion" class="subtitulo-app">
+            Operación Seleccionada
+          </h2>
+
+          <div class="controles-matriz-dummies">
+            <div class="control-group">
+              <span class="label-dummy">Filas</span>
+              <button type="button" class="btn-circular" id="add-row">+</button>
+              <button type="button" class="btn-circular" id="remove-row">
+                -
+              </button>
+            </div>
+            <div class="control-group">
+              <span class="label-dummy">Columnas</span>
+              <button type="button" class="btn-circular" id="add-col">+</button>
+              <button type="button" class="btn-circular" id="remove-col">
+                -
+              </button>
+            </div>
+<button type="button" class="btn-limpiar" id="clear-matrix">Limpiar números</button>
+    <button type="button" class="btn-limpiar" id="reset-matrix">Reiniciar a 2x2</button>
+            </button>
+          </div>
+
+          <div class="contenedor-tabla">
+            <table class="tabla-matriz" id="tablaMatriz">
+              <tr>
+                <td>
+                  <input type="text" class="elemento-matriz" placeholder="1" />
+                </td>
+                <td>
+                  <input type="text" class="elemento-matriz" placeholder="0" />
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <input type="text" class="elemento-matriz" placeholder="0" />
+                </td>
+                <td>
+                  <input type="text" class="elemento-matriz" placeholder="1" />
+                </td>
+              </tr>
+            </table>
+          </div>
+
+          <section class="seccion boton-seccion">
+            <button class="boton" id="botonResolver">Resolver</button>
+          </section>
+        </section>
+      </main>
+    </main>
+
+    <footer class="footer">
+      <div id="interpretacion" class="resultado-box"></div>
+      
+      <div id="resultado" class="resultado-box"></div>
+    </footer>
+
+    <script src="moverse.js"></script>
+    <script src="resolver.js"></script>
+  </body>
+</html>
+    
