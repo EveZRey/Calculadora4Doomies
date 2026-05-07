@@ -1,0 +1,132 @@
+/*Hector*/
+@media (max-width: 600px) {
+  .header {
+    padding: 15px;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  .header img {
+    height: 4.5rem;
+  }
+
+  .titulo {
+    font-size: 22px;
+    width: 100%;
+    order: 3;
+    margin-top: 5px;
+  }
+
+  .logo-left {
+    order: 1;
+  }
+
+  .logo-right {
+    order: 2;
+    margin-left: auto;
+  }
+
+  .controles-matriz-dummies {
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  .control-group {
+    width: 100%;
+    justify-content: space-between;
+    padding: 10px 20px;
+  }
+
+  .btn-limpiar {
+    width: 100%;
+    margin-top: 10px;
+  }
+
+  .tabla-matriz td {
+    width: 45px;
+    height: 45px;
+  }
+
+  .elemento-matriz {
+    font-size: 30px;
+  }
+
+  .btn-volver {
+    align-self: center;
+    margin-bottom: 10px;
+  }
+
+  .subtitulo-app {
+    font-size: 35px;
+  }
+
+  .grid-menu {
+    grid-template-columns: 1fr; /* 1 sola columna */
+  }
+
+  /* 🔥 Separamos la pastilla 2x2 y las Columnas para que no choquen */
+  .controles-superiores {
+    justify-content: space-between;
+  }
+
+  .badge-dimensiones {
+    position: relative; /* En celular le quitamos el centrado absoluto */
+    left: 0;
+    transform: none;
+  }
+
+  /* 🔥 El efecto de recuadro interactivo de tu boceto */
+  .grupo-botones-movil {
+    position: relative;
+    flex-direction: column; /* Apila de arriba hacia abajo */
+    background: #f0f6ff;
+    border: 2px solid #cce0ff;
+    border-radius: 12px;
+    padding: 5px;
+    transition: all 0.3s ease;
+  }
+
+  /* Escondemos los botones redondos por defecto */
+  .grupo-botones-movil .btn-circular {
+    display: none;
+    margin: 4px 0;
+  }
+
+  /* 🔥 Ordenamos mágicamente: '+' arriba, número en medio, '-' abajo */
+  .grupo-botones-movil .btn-mas {
+    order: -1;
+  }
+  .grupo-botones-movil .indicador-numero {
+    order: 0;
+    margin: 0;
+    border: none;
+    box-shadow: none;
+    background: transparent;
+  }
+  .grupo-botones-movil .btn-menos {
+    order: 1;
+  }
+
+  /* 🔥 Cuando el usuario toca el número, se añade esta clase y SE ABRE */
+  .grupo-botones-movil.desplegado {
+    background: #ffffff;
+    box-shadow: 0 4px 12px rgba(44, 123, 229, 0.2);
+    z-index: 100;
+  }
+
+  .grupo-botones-movil.desplegado .btn-circular {
+    display: flex; /* Aparecen los botones */
+    animation: saltarBotones 0.2s ease-in-out;
+  }
+
+  @keyframes saltarBotones {
+    from {
+      opacity: 0;
+      transform: scale(0.5);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+}

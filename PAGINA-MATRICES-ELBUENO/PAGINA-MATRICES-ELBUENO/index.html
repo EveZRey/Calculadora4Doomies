@@ -1,0 +1,294 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Calculadora de Matrices</title>
+    <link rel="stylesheet" href="CSS/base.css" />
+    <link rel="stylesheet" href="CSS/layout.css" />
+    <link rel="stylesheet" href="CSS/componentes.css" />
+    <link rel="stylesheet" href="CSS/resultado.css" />
+    <link rel="stylesheet" href="CSS/responsive.css" />
+  </head>
+  <body>
+    <header class="header">
+      <a href="/Index.html" class="logo-left">
+        <img src="img/Escom.png" alt="Escom" />
+      </a>
+      <h1 class="titulo">Calculadora de Matrices</h1>
+      <a href="/Index.html" class="logo-right">
+        <img src="img/IPN.png" alt="IPN" />
+      </a>
+    </header>
+
+    <main class="contenedor">
+      <section id="vista-menu" class="vista-activa">
+        <p class="texto">> ¿Qué operación deseas realizar hoy?</p>
+
+        <div class="grid-menu">
+          <div class="tarjeta-opcion" data-op="sel">
+            <div class="icono">A=BX</div>
+            <h3>Sistemas (SEL)</h3>
+            <p>Resuelve sistemas de ecuaciones lineales por Gauss-Jordan.</p>
+          </div>
+          <div class="tarjeta-opcion" data-op="det">
+            <div class="icono">|A|</div>
+            <h3>Determinante</h3>
+            <p>Cálculo exacto para matrices cuadradas.</p>
+          </div>
+          <div class="tarjeta-opcion" data-op="inv">
+            <div class="icono">A⁻¹</div>
+            <h3>Inversa</h3>
+            <p>Obtén la matriz inversa mediante Gauss Jordan.</p>
+          </div>
+
+          <!-- ! ---------------------------------------------- LUIS TOVAR ESPACIOS VECTORIALES ---------------------------------------------- -->
+          <div class="tarjeta-opcion" data-op="sev">
+            <div class="icono">S={}</div>
+            <h3>Espacios Vectoriales</h3>
+            <p>Ingresa un conjuto de vectores para conocer su BASE</p>
+          </div>
+          <!-- ! ---------------------------------------------- LUIS TOVAR ESPACIOS VECTORIALES ---------------------------------------------- -->
+        </div>
+
+        <div style="display: none">
+          <input type="radio" name="operacion" value="sel" checked />
+          <input type="radio" name="operacion" value="det" />
+          <input type="radio" name="operacion" value="inv" />
+
+          <!-- ! ---------------------------------------------- LUIS TOVAR ESPACIOS VECTORIALES ---------------------------------------------- -->
+          <input type="radio" name="operacion" value="sev" />
+          <!-- ! ---------------------------------------------- LUIS TOVAR ESPACIOS VECTORIALES ---------------------------------------------- -->
+        </div>
+      </section>
+
+      <section id="vista-calculadora" class="vista-oculta">
+        <button class="btn-volver" onclick="volverAlMenu()">
+          &#8592; Volver al Menú
+        </button>
+        <h2 id="titulo-operacion" class="subtitulo-app">
+          Operación Seleccionada
+        </h2>
+
+        <!-- ! --------------------------------------------ALI BOTONES DE FILAS Y COLUMNAS ---------------------------------------------->
+        <div class="controles-matriz-dummies">
+          <button type="button" class="btn-limpiar" id="clear-matrix">
+            Limpiar números
+          </button>
+          <button type="button" class="btn-limpiar" id="reset-matrix">
+            Reiniciar a 2x2
+          </button>
+        </div>
+
+        <div class="area-interactiva">
+          <div class="controles-superiores">
+            <div id="dimensiones-matriz" class="badge-dimensiones">2 × 2</div>
+
+            <div class="control-columnas">
+              <span class="label-vertical">Columnas</span>
+              <div class="grupo-botones-movil">
+                <button
+                  type="button"
+                  class="btn-circular btn-menos"
+                  id="remove-col"
+                >
+                  -
+                </button>
+                <span
+                  id="contador-columnas"
+                  class="indicador-numero"
+                  onclick="this.parentElement.classList.toggle('desplegado')"
+                  >2</span
+                >
+                <button type="button" class="btn-circular btn-mas" id="add-col">
+                  +
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <div id="teclado-math-movil" class="teclado-movil">
+            <button
+              type="button"
+              class="btn-tecla"
+              ontouchstart="event.preventDefault(); insertarSimbolo('-')"
+              onmousedown="
+                event.preventDefault();
+                insertarSimbolo('-');
+              "
+            >
+              -
+            </button>
+            <button
+              type="button"
+              class="btn-tecla"
+              ontouchstart="event.preventDefault(); insertarSimbolo('/')"
+              onmousedown="
+                event.preventDefault();
+                insertarSimbolo('/');
+              "
+            >
+              /
+            </button>
+          </div>
+
+          <div class="teclado-irracionales">
+            <button
+              type="button"
+              class="btn-irracional"
+              onmousedown="
+                event.preventDefault();
+                insertarSimbolo('π');
+              "
+              ontouchstart="event.preventDefault(); insertarSimbolo('π')"
+            >
+              π
+            </button>
+            <button
+              type="button"
+              class="btn-irracional"
+              onmousedown="
+                event.preventDefault();
+                insertarSimbolo('e');
+              "
+              ontouchstart="event.preventDefault(); insertarSimbolo('e')"
+            >
+              e
+            </button>
+            <button
+              type="button"
+              class="btn-irracional"
+              onmousedown="
+                event.preventDefault();
+                insertarSimbolo('√');
+              "
+              ontouchstart="event.preventDefault(); insertarSimbolo('√')"
+            >
+              √
+            </button>
+          </div>
+
+          
+            <div class="wrapper-matriz">
+              <div class="contenedor-tabla">
+                <div class="padre_1"></div>
+                <div id="etiqueta-espacio" class="etiqueta-s vista-oculta">
+                  S =
+                </div>
+                <div
+                  id="simbolo-matriz"
+                  class="matriz-container matriz-corchetes"
+                >
+                  <table class="tabla-matriz" id="tablaMatriz">
+                    <tr>
+                      <td>
+                        <input
+                          type="text"
+                          class="elemento-matriz"
+                          placeholder="1"
+                          inputmode="decimal"
+                          autocorrect="off"
+                          autocapitalize="none"
+                          spellcheck="false"
+                        />
+                      </td>
+                      <td>
+                        <input
+                          type="text"
+                          class="elemento-matriz"
+                          placeholder="0"
+                          inputmode="decimal"
+                          autocorrect="off"
+                          autocapitalize="none"
+                          spellcheck="false"
+                        />
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <input
+                          type="text"
+                          class="elemento-matriz"
+                          placeholder="0"
+                          inputmode="decimal"
+                          autocorrect="off"
+                          autocapitalize="none"
+                          spellcheck="false"
+                        />
+                      </td>
+                      <td>
+                        <input
+                          type="text"
+                          class="elemento-matriz"
+                          placeholder="1"
+                          inputmode="decimal"
+                          autocorrect="off"
+                          autocapitalize="none"
+                          spellcheck="false"
+                        />
+                      </td>
+                    </tr>
+                  </table>
+                </div>
+              </div>
+            </div>
+            <div class="controles-inferiores">
+              <div class="control-filas">
+                <span class="label-dummy">Filas</span>
+                <div class="grupo-botones-movil">
+                  <button
+                    type="button"
+                    class="btn-circular btn-menos"
+                    id="remove-row"
+                  >
+                    -
+                  </button>
+                  <span
+                    id="contador-filas"
+                    class="indicador-numero"
+                    onclick="this.parentElement.classList.toggle('desplegado')"
+                    >2</span
+                  >
+                  <button
+                    type="button"
+                    class="btn-circular btn-mas"
+                    id="add-row"
+                  >
+                    +
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- ! --------------------------------------------ALI BOTONES DE FILAS Y COLUMNAS ---------------------------------------------->
+
+        <section class="seccion boton-seccion">
+          <button class="boton" id="botonResolver">Resolver</button>
+        </section>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div id="interpretacion" class="resultado-box"></div>
+      <div id="resultado" class="resultado-box"></div>
+
+      <!-- ! ---------------------------------------------- LUIS TOVAR ESPACIOS VECTORIALES ---------------------------------------------- -->
+      <section class="section boton-fichero vista-oculta">
+        <button id="excel" class="boton">Archivo de Excel (.xls)</button>
+        <button id="btnTXT" class="boton">Archivo de texto (.txt)</button>
+      </section>
+      <!-- ! ---------------------------------------------- LUIS TOVAR ESPACIOS VECTORIALES ---------------------------------------------- -->
+    </footer>
+
+    <script type="module" src="JS/moverse.js"></script>
+    <script type="module" src="JS/control-matriz.js"></script>
+    <!-- ! ---------------------------------------------- LUIS TOVAR ESPACIOS VECTORIALES ---------------------------------------------- -->
+    <script src="JS/excel.js"></script>
+    <!-- ! ---------------------------------------------- LUIS TOVAR ESPACIOS VECTORIALES ---------------------------------------------- -->
+
+    <!-- ! ---------------------------------------------- DIAZ ORTEGA ARCHIVO TXT ---------------------------------------------- -->
+    <script src="JS/archivo-txt.js"></script>
+    <!-- ! ---------------------------------------------- DIAZ ORTEGA ARCHIVO TXT ---------------------------------------------- -->
+  </body>
+</html>

@@ -1,0 +1,602 @@
+.resultado-box {
+  overflow-x: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.tabla-resultado {
+  border-collapse: separate;
+  border-spacing: 8px;
+  margin: auto;
+}
+
+.celda-resultado {
+  min-width: 70px;
+  width: max-content;
+  min-height: 70px;
+  height: auto;
+  background-color: #ffffff;
+  border: 1px solid #cfe4ff;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 30px;
+  color: #1a5fc2;
+  padding: 10px 15px;
+}
+
+.resultado-box {
+  background-color: #eaf4ff;
+  border: 1px solid #d6eaff;
+  border-radius: 10px;
+
+  padding: 15px;
+  min-height: 50px;
+
+  color: #2c5aa0;
+}
+
+.resultado-box::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+.resultado-box::-webkit-scrollbar-track {
+  background: #eaf4ff;
+  border-radius: 10px;
+}
+
+.resultado-box::-webkit-scrollbar-thumb {
+  background: #9ec5fe;
+  border-radius: 10px;
+}
+
+.resultado-box::-webkit-scrollbar-thumb:hover {
+  background: #2c7be5;
+}
+
+.resultado-det {
+  margin-top: 15px;
+  padding: 15px;
+  background-color: #eaf4ff;
+  border-left: 4px solid #2c7be5;
+  border-radius: 4px;
+  font-size: 1.4em;
+  font-weight: 700;
+  color: #1a2a3a;
+  line-height: 1.5;
+}
+
+.resultado-det strong {
+  color: #2c7be5;
+}
+
+/*Hector*/
+
+.vista-oculta {
+  display: none !important;
+}
+
+.vista-activa {
+  display: flex;
+  flex-direction: column;
+  animation: fadeIn 0.4s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.resultado-box:empty {
+  display: none !important;
+}
+
+/* -------------------------------------------- */
+.matriz-container {
+  display: inline-flex;
+  align-items: center;
+  position: relative;
+  margin: 20px;
+  padding: 0 25px;
+}
+
+.matriz-container::before,
+.matriz-container::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 20px;
+  border: 5px solid #2c7be5;
+  transition: all 0.3s ease;
+}
+
+/* Corchetes [ ] */
+.matriz-corchetes::before {
+  left: 0;
+  border-right: none;
+}
+.matriz-corchetes::after {
+  right: 0;
+  border-left: none;
+}
+
+/* Paréntesis ( ) */
+.matriz-parentesis::before {
+  left: 0;
+  border-right: none;
+  border-radius: 100px 0 0 100px;
+}
+.matriz-parentesis::after {
+  right: 0;
+  border-left: none;
+  border-radius: 0 100px 100px 0;
+}
+
+/* Determinante | | */
+.matriz-determinante::before {
+  left: 0;
+  width: 0;
+  border-top: none;
+  border-bottom: none;
+  border-right: none;
+}
+.matriz-determinante::after {
+  right: 0;
+  width: 0;
+  border-top: none;
+  border-bottom: none;
+  border-left: none;
+}
+
+/* Paréntesis { s} */
+.matriz-llaves::before {
+  left: 0;
+  border-right: none;
+  border-radius: 100px 0 0 100px;
+}
+.matriz-llaves::after {
+  right: 0;
+  border-left: none;
+  border-radius: 0 100px 100px 0;
+}
+
+/* ! ---------------------------------------------- LUIS TOVAR ESPACIOS VECTORIALES ---------------------------------------------  */
+
+#interpretacion {
+  margin-bottom: 3rem;
+}
+
+/* ! ---------------------------------------------- LUIS TOVAR ESPACIOS VECTORIALES ---------------------------------------------  */
+
+#resultado {
+  display: block;
+
+  width: 100%;
+  max-height: 500px;
+  overflow-y: auto;
+  overflow-x: auto;
+
+  padding: 10px 0;
+  box-sizing: border-box;
+  scroll-behavior: smooth;
+
+  text-align: center;
+
+  /* ! ---------------------------------------------- LUIS TOVAR ESPACIOS VECTORIALES ---------------------------------------------  */
+
+  margin-bottom: 3rem;
+
+  /* ! ---------------------------------------------- LUIS TOVAR ESPACIOS VECTORIALES ---------------------------------------------  */
+}
+
+.tabla-resultado {
+  position: relative;
+  border-collapse: collapse;
+  padding: 0 25px;
+  border-collapse: separate;
+  border-spacing: 8px;
+  margin-top: 40px;
+  margin-bottom: 40px;
+}
+
+.tabla-resultado::before,
+.tabla-resultado::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: -5px;
+  width: 12px;
+  border: 5px solid #2c7be5;
+}
+
+.tabla-resultado::before {
+  left: -10px;
+  border-right: none;
+}
+
+.tabla-resultado::after {
+  right: -10px;
+  border-left: none;
+}
+
+.matriz-parentesis::before {
+  border-radius: 15px 0 0 15px;
+}
+.matriz-parentesis::after {
+  border-radius: 0 15px 15px 0;
+}
+
+.matriz-corchetes::before {
+  border-radius: 0;
+}
+.matriz-corchetes::after {
+  border-radius: 0;
+}
+
+/*_ ---------------------------------------------- ANGEL RIVERA - MEJORA DE ERRORES ---------------------------------------------- --> */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+}
+
+.modal-error {
+  background: #ffffff;
+  padding: 30px 40px;
+  border-radius: 12px;
+  width: 400px;
+  max-width: 90%;
+  text-align: center;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+  animation: aparecer 0.25s ease;
+}
+
+.modal-error h2 {
+  margin-bottom: 15px;
+  color: #d32f2f;
+  font-size: 24px;
+}
+
+.modal-error p {
+  font-size: 16px;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+.modal-error button {
+  background: #d32f2f;
+  color: white;
+  border: none;
+  padding: 10px 25px;
+  border-radius: 6px;
+  font-size: 15px;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.modal-error button:hover {
+  background: #b71c1c;
+}
+
+@keyframes aparecer {
+  from {
+    transform: scale(0.8);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+/*_ ---------------------------------------------- ANGEL RIVERA - MEJORA DE ERRORES ---------------------------------------------- --> */
+
+.wrapper-matriz {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 5px 0;
+  padding: 40px 20px;
+  border: 1px solid #d6eaff;
+  border-radius: 15px;
+  background-color: #f0f6ff;
+  width: 100%;
+  max-height: 500px;
+  overflow-x: auto;
+  overflow-y: auto;
+  scroll-behavior: smooth;
+}
+
+.area-interactiva {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.controles-superiores {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 20px;
+  margin-bottom: 10px;
+}
+
+.controles-inferiores {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  margin-top: 10px;
+  margin-bottom: 20px;
+}
+
+.control-columnas,
+.control-filas {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: #ffffff;
+  padding: 10px 20px;
+  border-radius: 25px;
+  border: 2px solid #d6eaff;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+}
+
+.badge-dimensiones {
+  background-color: #ffffff;
+  color: #2c7be5;
+  border: 2px solid #2c7be5;
+  padding: 8px 20px;
+  border-radius: 20px;
+  font-size: 16px;
+  font-weight: bold;
+  box-shadow: 0 4px 8px rgba(44, 123, 229, 0.15);
+}
+
+.indicador-numero {
+  background-color: #f0f6ff;
+  border: 2px solid #cce0ff;
+  color: #1a5fc2;
+  font-weight: bold;
+  font-size: 18px;
+  padding: 4px 16px;
+  border-radius: 8px;
+  min-width: 45px;
+  text-align: center;
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+.teclado-movil {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  margin-bottom: 15px;
+}
+
+.btn-tecla {
+  background-color: #eaf4ff;
+  color: #2c7be5;
+  border: 2px solid #2c7be5;
+  border-radius: 8px;
+  width: 60px;
+  height: 45px;
+  font-size: 24px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.btn-tecla:active {
+  background-color: #2c7be5;
+  color: #ffffff;
+}
+@media (min-width: 601px) {
+  .teclado-movil {
+    display: none;
+  }
+}
+
+.control-columnas {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 12px;
+}
+
+.label-vertical {
+  font-weight: bold;
+  font-size: 20px;
+  color: #2c5aa0;
+  letter-spacing: 1px;
+}
+
+.control-filas {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+  margin-top: 10px;
+  margin-bottom: 20px;
+}
+
+.control-filas .label-dummy {
+  font-size: 20px;
+  color: #2c5aa0;
+}
+
+/*_ ---------------------------------------------- SANCHEZ JUAREZ DIEGO JAFET-CONTADORES ---------------------------------------------- --> */
+
+/* Contenedor principal para alinear los contadores con la matriz */
+.matriz-con-indices {
+  display: grid;
+  grid-template-areas:
+    ". col-indices"
+    "row-indices matriz";
+  gap: 10px;
+  margin: auto;
+  width: max-content;
+}
+
+/* Estilo para los números de las columnas (arriba) */
+.indices-columnas {
+  grid-area: col-indices;
+  display: flex;
+  justify-content: space-around;
+  padding-left: 5px;
+}
+
+/* Estilo para los números de las filas (izquierda) */
+.indices-filas {
+  grid-area: row-indices;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  padding-right: 10px;
+}
+
+.indice-numero {
+  font-family: "Segoe UI", sans-serif;
+  font-size: 14px;
+  font-weight: bold;
+  color: #2c7be5;
+  background: #eaf4ff;
+  width: 25px;
+  height: 25px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  border: 1px solid #d6eaff;
+}
+
+/* Ajuste para que la tabla de la matriz quede en su área */
+.tabla-matriz {
+  grid-area: matriz;
+  margin: 0;
+}
+
+/*_ ---------------------------------------------- NAVARRO DOMÍNGUEZ ANTONIO ESTILIZAR SUB ESPACIOS -------------------------------------*/
+.matriz-container.matriz-llaves::before,
+.matriz-container.matriz-llaves::after {
+  border: none !important;
+  border-radius: 0 !important;
+}
+
+/* 2. Contenedor principal: Hace espacio para las llaves gigantes */
+.matriz-container.matriz-llaves {
+  position: relative;
+  padding: 0 45px !important;
+}
+
+/* 3. Llave Izquierda "{" usando un SVG dinámico */
+.matriz-container.matriz-llaves::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 25px;
+  height: 100%;
+  background-image: url("data:image/svg+xml,%3Csvg preserveAspectRatio='none' viewBox='0 0 10 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M 10 0 C 5 0 5 30 5 45 C 5 48 0 50 0 50 C 0 50 5 52 5 55 C 5 70 5 100 10 100' fill='transparent' stroke='%232c7be5' stroke-width='3.5'/%3E%3C/svg%3E");
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+}
+
+/* 4. Llave Derecha "}" usando un SVG dinámico */
+.matriz-container.matriz-llaves::after {
+  content: "";
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 25px;
+  height: 100%;
+  background-image: url("data:image/svg+xml,%3Csvg preserveAspectRatio='none' viewBox='0 0 10 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M 0 0 C 5 0 5 30 5 45 C 5 48 10 50 10 50 C 10 50 5 52 5 55 C 5 70 5 100 0 100' fill='transparent' stroke='%232c7be5' stroke-width='3.5'/%3E%3C/svg%3E");
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+}
+
+/* 5. Reseteo del contador y márgenes de la tabla interna */
+.matriz-container.matriz-llaves .tabla-matriz {
+  counter-reset: vector-alpha;
+  margin-left: 90px !important;
+  margin-right: 30px !important;
+  border-spacing: 25px 8px !important; /* NUEVO: 25px de separación horizontal, 8px vertical */
+}
+
+/* 6. Aumentar el contador en cada fila */
+.matriz-container.matriz-llaves .tabla-matriz tr {
+  counter-increment: vector-alpha;
+}
+
+.matriz-container.matriz-llaves .tabla-matriz td {
+  position: relative;
+}
+
+/* 7. Prefijo: Inyectar "α_n = (" (con unicode \03B1 para alpha real) */
+.matriz-container.matriz-llaves .tabla-matriz td:first-child::before {
+  content: "\03B1" counter(vector-alpha) " = (";
+  position: absolute;
+  left: -85px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 26px;
+  color: #2c7be5;
+  font-weight: bold;
+  white-space: nowrap;
+}
+
+/* 8. Sufijo: Inyectar ")" después del último input */
+.matriz-container.matriz-llaves .tabla-matriz td:last-child::after {
+  content: "), ";
+  position: absolute;
+  right: -25px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 26px;
+  color: #2c7be5;
+  font-weight: bold;
+}
+
+/* 9. Separador: Inyectar "," entre cada input */
+
+.matriz-container.matriz-llaves .tabla-matriz td:not(:last-child)::after {
+  content: ",";
+  position: absolute;
+  right: -15px; /* ANTES ERA -6px. Al ser un número más negativo, se aleja más hacia la derecha */
+  bottom: 0px;
+  transform: translateY(-20%);
+  font-size: 35px;
+  color: #2c7be5;
+  font-weight: bold;
+}
+.etiqueta-s {
+  font-size: 38px;
+  font-weight: bold;
+  color: #2c7be5;
+
+  font-family: "Cambria Math", "Times New Roman", serif;
+  font-style: italic;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  white-space: nowrap;
+}
